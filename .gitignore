@@ -1,0 +1,3 @@
+librtring.so.*
+test-*
+!test-*.*
