@@ -7,9 +7,11 @@ signaling for synchronization.
 
 ## Building librtring
 
-1. ``git clone https://github.com/harisokanovic/librtring.git``
-2. ``make``
-3  ``make check``  # to run unit tests
+```
+git clone https://github.com/harisokanovic/librtring.git
+make
+make check  # to run unit tests
+```
 
 Consider running ``test-latency --rt-priority 99`` to measure messaging
 latency between RT tasks (SCHED_FIFO, highest priority). Requires root.
