@@ -301,8 +301,7 @@ void produce_one(rtring_t *local_ring, long int ignore, int blocking) {
 
     if (write_res == 0) {
         if (blocking) {
-            /* TODO should librtpi handle ESRCH? */
-            assert(errno == EINTR || errno == ESRCH);
+            assert(errno == EINTR);
         }
         else {
             /* ring is full */
@@ -332,8 +331,7 @@ long long unsigned int consume_one(rtring_t *local_ring) {
     errno = -42;
     read_res = rtring_read(local_ring, &sample, sizeof(struct sample_t), 1, 0);
 
-    /* TODO should librtpi handle ESRCH? */
-    assert( (read_res == 1 && (errno == -42 || errno == EAGAIN)) || (read_res == 0 && (errno == EINTR || errno == ESRCH)) );
+    assert( (read_res == 1 && (errno == -42 || errno == EAGAIN)) || (read_res == 0 && errno == EINTR) );
 
     if (read_res) {
         assert(sample.magic == SAMPLE_MAGIC);
